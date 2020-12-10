@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\DB;
 
 Route::get ('/show', 'Crud@index');
 Route::get('/insert', 'Crud@create');
+Route::get('/detail/{id}', 'Crud@show');
+Route::get('/delete/{id}', 'Crud@destroy');
 Route::post('/save', 'Crud@store');
-
+Route::post('/update', 'Crud@update');
 /*Termina RUTAS CRUD*/ 
 
 Route::get('/', 'controlador@login');

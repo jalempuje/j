@@ -1,4 +1,23 @@
 @extends('layouts.master')
+@if(isset($user) and is_object($user))
+    @php
+        $title='Modificacion de un usuario';
+        $id=$user->idUsuario;
+        $Usuario=$user->Usuario;
+        $password=$user->password;
+        $key=$user->key;
+        $boton='Actualizar';
+    @endphp
+@else
+    @php
+        $title='Alta de un usuario';
+        $id='';
+        $Usuario='';
+        $password='';
+        $key='';
+        $boton='Inserrtar';
+    @endphp
+@endif
 @section('title', 'Mostrar Usuarios')
 @section('header')
 @stop
@@ -33,8 +52,12 @@
                 <img src="images/eli/e.jpg" alt="" class="imagen-about-us">
                 <div class="contenido-textos">
   
-                <form action="{{action('Crud@store)}}" method="POST">
-                {{csrf-field()}}
+                
+                <form action="{{isset($user) ? action('Crud@update') :action('Crud@store')}}" method="POST">
+                {{csrf_field()}}
+                @if(isset($user) and is_object($user))
+                <input type="hidden" name="id" value="{{$id}}">
+                @endif
                 <label for="usuario">Usuario</label>
                 <input type="text" name="usuario">
                 <br>
@@ -44,7 +67,7 @@
                 <label for="llave">Key</label>
                 <input type="text" name="llave">
                 <br>
-                <input type="submit" value="submit">
+                <input type="submit" value={{$boton}}>
                 </form>
                 </div>
             </div>
@@ -53,14 +76,14 @@
                     <h2 class="titulo">Find me on: </h2>
                     <div class="galeria-port">
                         <div class="imagen-port">
-                            <img src="images/eli/queenmarieantoinetteoffrance.jpg" alt="">
+                            <img src="images/harryy.jpg" alt="">
                             <div class="hover-galeria">
                                 <img src="images/brush.png" alt="">
                                 <p> <a href="https://twitter.com/sheerandarlin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><center><b>JaleTW</b></center></a></p>
                             </div>
                         </div>
                         <div class="imagen-port">
-                            <img src="images/eli/portraitofprincehenrylubomirskiasthegeniusoffame.jpg" alt="">
+                            <img src="images/harry.jpg" alt="">
                             <div class="hover-galeria">
                                 <img src="images/brush.png" alt="">
                                 <p><a href="https://www.instagram.com/jalempuje/?hl=es-la"><center><b> Jale</b></center></a></p>
@@ -69,7 +92,6 @@
                     </div>
                 </div>
             </section>
-       
 @stop
 @section('footer')
 

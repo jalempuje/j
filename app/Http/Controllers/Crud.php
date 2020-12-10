@@ -47,18 +47,17 @@ class Crud extends Controller
             'password'=>$request->input('clave'),
             'key'=>$request->input('llave')
         ]);
-        return redirect()->action('Crud@index');
+        return redirect()->action('Crud@index')
+        ->with('status', 'Usuario Eliminado Exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $user=DB::table('usuarios')
+        ->where('idUsuario','=', $id)
+        ->first();
+        return view ('Crud.altaUsuario', ['user'=>$user]);
     }
 
     /**
@@ -72,26 +71,30 @@ class Crud extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+   
+    public function update(Request $request)
     {
-        //
+        $user = DB::table('usuarios')
+        ->where('idUsuario', '=',  $request->input('id'))
+        ->update([
+            'Usuario' => $request->input('usuario'),
+            'password' => $request->input('clave'),
+            'key' => $request->input('llave')
+        ]);
+
+        return redirect()->action('Crud@index')
+            ->with('status','Usuario Modificado Exitosamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        //
+        $user=DB::table('usuarios')
+        ->where('idUsuario', '=', $id)
+        ->delete();
+
+        return redirect()->action('Crud@index')
+        ->with('status', 'Usuario Eliminado Exitosamente');
+    
     }
 }

@@ -30,50 +30,52 @@
         <section class="contenedor sobre-nosotros">
             <h2 class="titulo">Usuarios</h2>
             <div class="contenedor-sobre-nosotros">
-                <img src="images/eli/e.jpg" alt="" class="imagen-about-us">
+                <img src="images/harryy.jpg" alt="" class="imagen-about-us">
                 <div class="contenido-textos">
+                 
                  <div>
-                <a href="{{action('Crud@create')}}"> Agregar un nuevo Usuario</a>
-                </div>   
-                <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Password</th>
-      <th scope="col">Llave</th>
-      <th scope="col">Actualizar</th>
-      <th scope="col">Borrar</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($usuarios as $user)
-    <tr>
-      <th scope="row">{{$user->idUsuario}}</th>
-      <td>{{$user->Usuario}}</td>
-      <td>{{$user->password}}</td>
-      <td>{{$user->key}}</td>
-      
-    </tr>
-    @endforeach
-  </tbody>
-</table>
-                    
-                </div>
+                <a href="{{action('Crud@create')}}"><img src="{{url('/images/icons8-nuevo-64.png')}}"> Agregar un nuevo Usuario</a>
+                </div>  
+
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Password</th>
+                <th scope="col">Llave</th>
+                <th scope="col">Actualizar</th>
+                <th scope="col">Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach($usuarios as $user)
+              <tr>
+                <th scope="row">{{$user->idUsuario}}</th>
+                <td>{{$user->Usuario}}</td>
+                <td>{{$user->password}}</td>
+                <td>{{$user->key}}</td>
+                <td><a href="{{action('Crud@show',['id'=>$user->idUsuario])}}"><img src="{{url('/images/icons8-aprobar-y-actualizar-64.png')}}"></a> </td>
+                <td><a href="{{action('Crud@destroy',['id'=>$user->idUsuario])}}"><img src="{{url('/images/icons8-eliminar-64.png')}}"></a> </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>      
+            </div>
             </div>
             <section class="portafolio">
                 <div class="contenedor">
                     <h2 class="titulo">Find me on: </h2>
                     <div class="galeria-port">
                         <div class="imagen-port">
-                            <img src="images/eli/queenmarieantoinetteoffrance.jpg" alt="">
+                            <img src="images/sailor.jpg" alt="">
                             <div class="hover-galeria">
                                 <img src="images/brush.png" alt="">
                                 <p> <a href="https://twitter.com/sheerandarlin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><center><b>JaleTW</b></center></a></p>
                             </div>
                         </div>
                         <div class="imagen-port">
-                            <img src="images/eli/portraitofprincehenrylubomirskiasthegeniusoffame.jpg" alt="">
+                            <img src="images/sailor1" alt="">
                             <div class="hover-galeria">
                                 <img src="images/brush.png" alt="">
                                 <p><a href="https://www.instagram.com/jalempuje/?hl=es-la"><center><b> Jale</b></center></a></p>
