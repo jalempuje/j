@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use \Illuminate\Support\Facades\DB;
 
 
 class Poetscircle extends Migration
@@ -84,6 +85,15 @@ class Poetscircle extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("DROP TABLE IF EXISTS poets");
+        DB::statement("CREATE TABLE `poets` (
+            `poet_code` INT(11) NOT NULL,
+            `first_name` VARCHAR(30) NULL DEFAULT NULL,
+            `surname` VARCHAR(40) NULL DEFAULT NULL,
+            `address` VARCHAR(100) NULL DEFAULT NULL,
+            `postcode` VARCHAR(20) NULL DEFAULT NULL,
+            `telephone_number` VARCHAR(30) NULL DEFAULT NULL,
+            PRIMARY KEY (`poet_code`)
+            )");
     }
 }

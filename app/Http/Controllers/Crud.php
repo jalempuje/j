@@ -35,7 +35,7 @@ class Crud extends Controller
             'key'=>$request->input('llave')
         ]);
         return redirect()->action('Crud@index')
-        ->with('status', 'Usuario Eliminado Exitosamente');
+        ->with('status', 'Usuario Insertado Exitosamente');
     }
 
 
